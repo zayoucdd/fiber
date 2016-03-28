@@ -2,11 +2,8 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  devtool: 'eval',
   entry: {
     app : [
-      'webpack-dev-server/client?http://localhost:3000',
-      'webpack/hot/only-dev-server',
       './lib/index.js'],
   },
   output: {
@@ -15,7 +12,13 @@ module.exports = {
     publicPath: '/js/'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.DefinePlugin({
+        'process.env': {
+          'NODE_ENV': JSON.stringify('production')
+        }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+    }),
   ],
   node: {
     fs: "empty"
@@ -29,7 +32,7 @@ module.exports = {
   resolveLoader: {
     'fallback': path.join(__dirname, 'node_modules')
   },
-  module: {    
+  module: {
     loaders: [
     {
       test: /\.js$/,
