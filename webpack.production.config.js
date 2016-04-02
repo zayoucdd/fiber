@@ -6,7 +6,11 @@ var webpack = require('webpack');
 module.exports = {
   // entry point for the bundle
   entry: {
+<<<<<<< HEAD
     // Sets up the app module index file
+=======
+    / Sets up the app module index file
+>>>>>>> a642f7db770a5757a8782c65d064a36f2e6493c6
     app : [
       './lib/index.js'],
   },
